@@ -9,10 +9,10 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator initialRouteName='Landing'>
-      <Stack.Screen name="Landing" component={Landing} />
-      <Stack.Screen name="LandingVideo" component={LandingVideo} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Survey" component={Survey} />
+      <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
+      <Stack.Screen name="LandingVideo" component={LandingVideo} options={{headerShown: false}}/>
+      <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
+      <Stack.Screen name="Survey" component={Survey} options={{headerShown: false}}/>
     </Stack.Navigator>
   );
 }
