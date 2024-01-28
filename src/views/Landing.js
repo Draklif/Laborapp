@@ -26,43 +26,43 @@ const jobList = [
     id: 2,
     name: "Alimentación",
     img: require("../assets/job-2.jpg"),
-    video: require("../assets/job-2.mp4"),
+    video: "",
   },
   {
     id: 3,
     name: "Construcción",
     img: require("../assets/job-3.jpg"),
-    video: require("../assets/job-3.mp4"),
+    video: "",
   },
   {
     id: 4,
     name: "Entretenimiento",
     img: require("../assets/job-4.jpg"),
-    video: require("../assets/job-4.mp4"),
+    video: "",
   },
   {
     id: 5,
     name: "Transporte",
     img: require("../assets/job-5.jpg"),
-    video: require("../assets/job-5.mp4"),
+    video: "",
   },
   {
     id: 6,
     name: "Servicio Doméstico",
     img: require("../assets/job-6.jpg"),
-    video: require("../assets/job-6.mp4"),
+    video: "",
   },
   {
     id: 7,
     name: "Domiciliario",
     img: require("../assets/job-7.jpg"),
-    video: require("../assets/job-7.mp4"),
+    video: "",
   },
   {
     id: 8,
     name: "Entretenimiento para Adultos",
     img: require("../assets/job-8.jpg"),
-    video: require("../assets/job-8.mp4"),
+    video: "",
   },
 ];
 
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   bannerContainer: {
     borderWidth: 2,
     borderColor: "#04acec",
-    backgroundColor: "#DFDFDF", // Cambia el color de fondo según tus preferencias
+    backgroundColor: "#98e2ff",
     paddingVertical: 12,
     paddingHorizontal: 16,
     marginHorizontal: 16,
@@ -115,20 +115,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   bannerTitle: {
+    alignSelf: 'center',
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 4,
-    color: "#333333", // Cambia el color del título según tus preferencias
+    color: "#333333",
   },
   bannerSubtitle: {
+    textAlign: 'center',
     fontSize: 16,
-    color: "#666666", // Cambia el color del subtítulo según tus preferencias
+    color: "#666666",
   },
 });
 
 const Landing = () => {
   const handleBannerPress = () => {
-    Linking.openURL("https://www.google.com"); // Cambia la URL según tu requisito
+    Linking.openURL("https://www.google.com");
   };
 
   return (
@@ -152,7 +154,7 @@ const Landing = () => {
         >
           <Text style={styles.bannerTitle}>Reforma pensional</Text>
           <Text style={styles.bannerSubtitle}>
-            Todo lo que necesita saber sobre la reforma pensional.
+            Todo lo que necesitas saber sobre la reforma pensional.
           </Text>
         </TouchableOpacity>
         <Text style={styles.titleText}>TRABAJO EN</Text>

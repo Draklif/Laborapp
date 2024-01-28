@@ -4,6 +4,7 @@ import { MotiView, MotiText } from "moti";
 
 const Survey = () => {
   const [responses, setResponses] = useState({})
+  const [isSurveyComplete, setIsSurveyComplete] = useState(false);
 
   const handleToggle = (questionId, response) => {
     setResponses(prevResponses => ({
@@ -11,6 +12,17 @@ const Survey = () => {
       [questionId]: response
     }))
   }
+
+  const handleSend = () => {
+    const allQuestionsAnswered = surveyQuestions.every(question => responses[question.id]);
+    setIsSurveyComplete(allQuestionsAnswered);
+
+    if (allQuestionsAnswered) {
+      console.log('Encuesta enviada:', responses);
+    } else {
+      alert('Por favor, completa todos los campos.');
+    }
+  };
 
   const surveyQuestions = [
     {
@@ -105,6 +117,9 @@ const Survey = () => {
             </MotiView>
           ))}
         </View>
+        <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
+          <Text style={styles.sendButtonText}>Enviar</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   )
@@ -120,7 +135,7 @@ const styles = StyleSheet.create({
   surveyText: {
     fontSize: 20,
     paddingHorizontal: 12,
-    marginBottom: 12
+    marginBottom: 48
   },
   questionContainer: {
     marginBottom: 20,
@@ -160,6 +175,19 @@ const styles = StyleSheet.create({
     height: 150,
     marginTop: 16
   },
+  sendButton: {
+    backgroundColor: '#04acec',
+    borderRadius: 8,
+    paddingVertical: 12,
+    marginVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  sendButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  }
 });
 
 export default Survey

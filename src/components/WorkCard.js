@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: "hidden",
     marginBottom: 20,
-    padding: 8,
+    padding: 4,
   },
   tinyLogo: {
     width: "100%",
