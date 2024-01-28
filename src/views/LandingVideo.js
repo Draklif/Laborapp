@@ -1,42 +1,66 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import Video from 'react-native-video'
-import React from 'react'
+import { View, Text, Image, StyleSheet, TouchableOpacity, Button, SafeAreaView, ScrollView } from 'react-native'
+import { Video, ResizeMode } from 'expo-av';
+import React, {useRef} from 'react'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    justifyContent: 'space-between'
+  },
+  videoContainer: {
+    marginTop: 96,
+    width: '100%',
+    aspectRatio: 16/9,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
   video: {
-    width: '100%',
-    height: '100%'
+    flex: 1,
   },
   transparentBackground: {
     ...StyleSheet.absoluteFillObject,
     height: '100%',
-    flex: 1,
+    zIndex: -1
   },
   logo: {
-    position: 'absolute',
-    bottom: 0,
     alignSelf: 'center',
     width: '100%',
-    height: 150,
+    height: 120,
+    marginBottom: 16
   },
   title: {
-    fontSize: 20,
+    position: 'absolute',
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#000000',
+    top: 48,
+    alignSelf: 'center'
   },
   floatingButton: {
     position: 'absolute',
-    bottom: 166,
+    top: 340,
     right: 16,
     backgroundColor: '#4CAF50',
     borderRadius: 50,
-    padding: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
   buttonText: {
     color: '#ffffff',
@@ -44,39 +68,49 @@ const styles = StyleSheet.create({
 });
 
 const LandingVideo = ({route, navigation}) => {
-  const { name, video } = route.params;
+const { name, video } = route.params;
 
-  const handleContinue = () => {
-    navigation.navigate('Survey');
-  };
+const handleContinue = () => {
+  navigation.navigate('Survey');
+  console.log(videoRef.current);
+  videoRef.current.pauseAsync();
+};
 
-  return (
-    <View style={styles.container}>
-      {/* <Video
-        source={require('../assets/train.mp4')}
+const videoRef = React.useRef();
+const [status, setStatus] = React.useState({});
+
+return (
+  <View style={styles.container}>
+    <Text style={styles.title}>{name}</Text>
+    <View style={styles.videoContainer}>
+      <Video
+        ref={videoRef}
         style={styles.video}
-        controls
-      /> */}
-
-      <Text style={styles.title}>TEST{name}</Text>
-
-      <Image
-        source={require('../assets/background.png')}
-        style={styles.transparentBackground}
-        resizeMode="cover"
-      />
-
-      <TouchableOpacity style={styles.floatingButton} onPress={handleContinue}>
-        <Text style={styles.buttonText}>Continuar</Text>
-      </TouchableOpacity>
-
-      <Image
-        source={require('../assets/laborapp-2.png')}
-        style={styles.logo}
-        resizeMode="contain"
+        source={video}
+        useNativeControls
+        resizeMode={ResizeMode.CONTAIN}
+        isLooping
+        shouldPlay
+        onPlaybackStatusUpdate={status => setStatus(() => status)}
       />
     </View>
-  );
-};
+
+    <Image
+      source={require('../assets/background.png')}
+      style={styles.transparentBackground}
+      resizeMode="cover"
+    />
+
+    <TouchableOpacity style={styles.floatingButton} onPress={handleContinue}>
+      <Text style={styles.buttonText}>Continuar</Text>
+    </TouchableOpacity>
+
+    <Image
+      source={require('../assets/laborapp-2.png')}
+      style={styles.logo}
+      resizeMode="contain"
+    />
+  </View>
+)};
 
 export default LandingVideo

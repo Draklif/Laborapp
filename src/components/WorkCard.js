@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const WorkCard = ({ name, img, video = '' }) => {
+const WorkCard = ({ name, img, video }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {

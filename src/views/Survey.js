@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, Image } from 'react-native'
 import React, { useState } from 'react'
+import { MotiView, MotiText } from "moti";
 
 const Survey = () => {
   const [responses, setResponses] = useState({})
@@ -62,8 +63,6 @@ const Survey = () => {
     },
   ];
 
-  const user = 'Usuario'
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -72,10 +71,16 @@ const Survey = () => {
           style={styles.logo}
           resizeMode="contain"
         />
-        <Text style={styles.surveyText}>Hola {user}, queremos saber más de ti.</Text>
+        <Text style={styles.surveyText}>Hola, queremos saber más de ti.</Text>
         <View style={styles.survey}>
           {surveyQuestions.map(question => (
-            <View key={question.id} style={styles.questionContainer}>
+            <MotiView from={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              type: 'timing',
+              duration: 350,
+            }} 
+            key={question.id} style={styles.questionContainer}>
               <Text style={styles.questionText}>{question.question}</Text>
               <View style={styles.toggleButtonsContainer}>
                 <TouchableOpacity
@@ -97,7 +102,7 @@ const Survey = () => {
                   <Text style={styles.buttonText}>No</Text>
                 </TouchableOpacity>
               </View>
-            </View>
+            </MotiView>
           ))}
         </View>
       </ScrollView>

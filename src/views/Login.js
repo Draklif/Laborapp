@@ -29,7 +29,7 @@ const Login = ({ navigation }) => {
       <ScrollView>
         <KeyboardAvoidingView behavior="padding">
           <View style={styles.formContainer}>
-            <Text style={styles.label}>Correo/Cédula</Text>
+            <Text style={styles.label}>Usuario</Text>
             <TextInput
               style={styles.input}
               placeholder="Ingrese su correo o cédula"
