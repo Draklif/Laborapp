@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -39,7 +39,11 @@ const WorkCard = ({ name, img, video }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('LandingVideo', { name, video });
+    if (video === "") {
+      navigation.navigate('UnderConstruction')
+    } else {
+      navigation.navigate('LandingVideo', { name, video });
+    }
   };
 
   return (

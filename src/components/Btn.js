@@ -60,7 +60,7 @@ const Btn = ({ type }) => {
   const buttonBehaviour =
     type === 'login'
       ? () => navigation.navigate('Login')
-      : () => navigation.navigate('Login')
+      : () => navigation.navigate('NewUser')
 
   const icon =
     type === 'login' ? (

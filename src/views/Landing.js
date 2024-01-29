@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   Linking,
+  Pressable,
 } from "react-native";
 import React from "react";
 import WorkCard from "../components/WorkCard";
@@ -115,14 +116,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   bannerTitle: {
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 4,
     color: "#333333",
   },
   bannerSubtitle: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 16,
     color: "#666666",
   },
@@ -148,15 +149,30 @@ const Landing = () => {
           <Btn type="login"></Btn>
           <Btn type="signup"></Btn>
         </View>
-        <TouchableOpacity
-          style={styles.bannerContainer}
+        <Pressable
+          style={({ pressed }) => [
+            styles.bannerContainer,
+            pressed && {
+              opacity: 0.8,
+              transform: [{ scale: 1.05 }],
+              transition: "all 1s",
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 3,
+              },
+              shadowOpacity: 0.27,
+              shadowRadius: 4.65,
+              elevation: 6,
+            },
+          ]}
           onPress={handleBannerPress}
         >
           <Text style={styles.bannerTitle}>Reforma pensional</Text>
           <Text style={styles.bannerSubtitle}>
             Todo lo que necesitas saber sobre la reforma pensional.
           </Text>
-        </TouchableOpacity>
+        </Pressable>
         <Text style={styles.titleText}>TRABAJO EN</Text>
         <MotiView
           from={{ opacity: 0, scale: 0.5 }}

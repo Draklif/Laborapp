@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, Ima
 import React, { useState } from 'react'
 import { MotiView, MotiText } from "moti";
 
-const Survey = () => {
+const Survey = ({ navigation }) => {
   const [responses, setResponses] = useState({})
   const [isSurveyComplete, setIsSurveyComplete] = useState(false);
 
@@ -18,7 +18,7 @@ const Survey = () => {
     setIsSurveyComplete(allQuestionsAnswered);
 
     if (allQuestionsAnswered) {
-      console.log('Encuesta enviada:', responses);
+      navigation.navigate('UnderConstruction')
     } else {
       alert('Por favor, completa todos los campos.');
     }

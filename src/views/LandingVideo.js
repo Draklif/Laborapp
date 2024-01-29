@@ -104,28 +104,6 @@ const handleContinue = () => {
   videoRef.current.pauseAsync();
 };
 
-if (video === "") {
-  return (
-    <View style={styles.container}>
-      <View style={styles.messageContainer}>
-      <Text style={styles.messageText}>¡Esta página está en construcción!</Text>
-      <Text style={styles.messageSubtitleText}>Lamentamos el inconveniente.</Text>
-        <TouchableOpacity
-          style={styles.returnButton}
-          onPress={() => navigation.goBack()} // O utiliza la navegación que desees
-        >
-          <Text style={styles.returnButtonText}>Volver</Text>
-        </TouchableOpacity>
-      </View>
-      <Image
-        source={require('../assets/background.png')}
-        style={styles.transparentBackground}
-        resizeMode="cover"
-      />
-    </View>
-  );
-}
-
 return (
   <View style={styles.container}>
     <Text style={styles.title}>{name}</Text>
